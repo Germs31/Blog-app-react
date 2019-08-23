@@ -1,5 +1,8 @@
-import React from 'react';
+import React from 'react'
 import Login from './Login'
+import Register from './Register';
+import Profile from './Profile'
+import { Route, Switch } from 'react-router-dom'
 import './App.css';
 
 class App extends React.Component{
