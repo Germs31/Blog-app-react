@@ -1,13 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import Login from './Login'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>FAKE TUMBLR</h1>
-    </div>
-  );
+class App extends React.Component{
+  render(){
+    return (
+      <div className="App">
+        <h1>FAKE TUMBLR</h1>
+        <Login/>
+      </div>
+    );
+  }
 }
 
 export default App;
