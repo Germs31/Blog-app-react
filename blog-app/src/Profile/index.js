@@ -1,9 +1,17 @@
 import React from 'react'
 
 class Profile extends React.Component{
+    state={
+        id: 1,
+        email: '',
+        image: '',
+        username: ''
+    }
+
     render(){
+        console.log(this.state, this.props.userInfo)
         return(
-            <h1>I AM THE PROFILE</h1>
+            <h1>Welcome, {this.props.userInfo.username}</h1>
         )
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 class Login extends React.Component{
     state={
@@ -7,17 +8,15 @@ class Login extends React.Component{
     }
 
     handleChange = (e) => {
-        console.log(e.target)
         this.setState({[e.target.name]: e.target.value})
     }
 
     handleSubmit = async (e) => {
         e.preventDefault();
-
         const login = this.props.logIn(this.state)
 
         login.then((data) =>{
-            if(data.status.message === 'success'){
+            if(data.status.message === 'Success'){
                 this.props.history.push('/profile')
             } else {
                 console.log(data, this.props)
@@ -36,6 +35,7 @@ class Login extends React.Component{
                 <label>Password</label>
                 <input type="password" name="password" onChange={this.handleChange}/>
                 <button type="submit">Login</button>
+                <Link to="/register">Sign Up</Link>
             </form>
         )
     }

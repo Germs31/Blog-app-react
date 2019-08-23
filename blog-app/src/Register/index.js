@@ -25,7 +25,7 @@ class Register extends React.Component{
         data.append('email', this.state.email)
         data.append('username', this.state.username)
 
-        console.log(data.enteries(), '<-- data')
+        console.log(data.entries(), '<-- data')
         for (let pair of data.entries()){
             console.log(pair[0], ', ', pair[1])
         }
@@ -33,7 +33,7 @@ class Register extends React.Component{
         const registerCall = this.props.register(data)
 
         registerCall.then((data) => {
-            if(data.status.message === "success"){
+            if(data.status.message === "Success"){
                 this.props.history.push('/profile')
             } else {
                 console.log(data)
@@ -52,6 +52,7 @@ class Register extends React.Component{
               <input type="password" name="password" onChange={this.handleChange}/>
               <label>Image</label>
               <input type="file" name="image" onChange={this.handleChange}/>
+              <button type="submit">Register</button>
           </form>
       )
   }

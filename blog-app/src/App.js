@@ -2,13 +2,14 @@ import React from 'react'
 import Login from './Login'
 import Register from './Register';
 import Profile from './Profile'
-import { Route, Switch } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import { Route, Switch, NavLink, Redirect } from 'react-router-dom'
 import './App.css';
-import { throwStatement } from '@babel/types';
+
 
 class App extends React.Component{
   state={
-    username: '',
+    username: null,
     email: '',
     image: '',
     loading: true
@@ -43,7 +44,6 @@ class App extends React.Component{
 
   register = async (data) => {
     try{
-
       const registerResponse = await fetch('http://localhost:8000/user/register',{
         method: 'POST',
         credential: 'inculde',
@@ -72,14 +72,19 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
+        <h1>FAKE TUMBLR</h1>
+        <Navbar />
         <Switch>
           <Route exact path="/" render={(props) => <Login {...props} logIn={this.logIn}/>}/>
           <Route exact path="/register" render={(props) => <Register {...props} register={this.register}/>}/>
-          <Route exact path="/profile" render={(props) => <Profile {...props} userInfo={this.state}/>}/>
+          <Route exact path="/profile" render={(props) => this.state.username ? <Profile {...props} userInfo={this.state}/> : <Redirect to='/' />}/>
         </Switch>
       </div>
     )
   }
 }
+
+
+
 
 export default App;
