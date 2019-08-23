@@ -9,7 +9,7 @@ class Register extends React.Component{
     }
 
     handleChange = (e) => {
-        if(e.target.name != "image"){
+        if(e.target.name !== "image"){
             this.setState({[e.target.name]: e.target.value});
         } else {
             this.setState({image: e.target.files[0]});
@@ -26,7 +26,7 @@ class Register extends React.Component{
         data.append('username', this.state.username)
 
         console.log(data.enteries(), '<-- data')
-        for ( let pair of data.entries()){
+        for (let pair of data.entries()){
             console.log(pair[0], ', ', pair[1])
         }
 

@@ -17,7 +17,7 @@ class Login extends React.Component{
         const login = this.props.logIn(this.state)
 
         login.then((data) =>{
-            if(data.status.message == 'success'){
+            if(data.status.message === 'success'){
                 this.props.history.push('/profile')
             } else {
                 console.log(data, this.props)
