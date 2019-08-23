@@ -12,8 +12,11 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
-        <h1>FAKE TUMBLR</h1>
-        <Login/>
+        <Switch>
+          <Route exact path="/" render={(props) => <Login {...props} logIn={this.logIn}/>}/>
+          <Route exact path="/register" render={(props) => <Register {...props} register={this.register}/>}/>
+          <Route exact path="/profile" render={(props) => <Profile {...props} userInfo={this.state}/>}/>
+        </Switch>
       </div>
     );
   }
