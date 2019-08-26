@@ -6,7 +6,7 @@ import Edit from './Edit'
 import Navbar from './components/Navbar'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import './App.css';
-
+console.log(process.env)
 
 class App extends React.Component{
   state={
