@@ -16,7 +16,7 @@ class Edit extends React.Component{
 
     // handleSubmit = async (e) => {
     //     try{
-    //         const updatedUser = await fetch(`http://localhost:8000/user/${this.props.match.params.id}/edit`, {
+    //         const updatedUser = await fetch(``${process.env.REACT_APP_BACKEND_URL}`/user/${this.props.match.params.id}/edit`, {
     //             method: 'PUT',
     //             credential: 'inculde',
     //             body: JSON.stringify(this.state),
