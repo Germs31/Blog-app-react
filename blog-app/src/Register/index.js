@@ -1,4 +1,6 @@
 import React from 'react'
+import { Button, Form, Grid, Header, Image, Message, Segment, GridColumn } from 'semantic-ui-react'
+
 
 class Register extends React.Component{
     state={
@@ -43,17 +45,19 @@ class Register extends React.Component{
 
   render(){
       return(
-          <form onSubmit={this.handleSubmit}> 
-              <label>Username:</label>
-              <input type="text" name="username" onChange={this.handleChange}/>
-              <label>Email:</label>
-              <input type="email" name="email" onChange={this.handleChange}/>
-              <label>Password:</label>
-              <input type="password" name="password" onChange={this.handleChange}/>
-              <label>Image</label>
-              <input type="file" name="image" onChange={this.handleChange}/>
-              <button type="submit">Register</button>
-          </form>
+          <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+              <GridColumn style={{ maxWidth: 450 }}>
+                <Form onSubmit={this.handleSubmit}>
+                    <Segment>
+                    <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' type='text' name='username' onChange={this.handleChange}/>
+                    <Form.Input fluid icon='mail' iconPosition='left' placeholder='Email' type='text' name='email' onChange={this.handleChange}/>                        
+                    <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password' name='password' onChange={this.handleChange}/>
+                    <Form.Input fluid icon='file' iconPosition='left' placeholder='image' type='file' name='image' onChange={this.handleChange}/>
+                    <Button type="submit">Register</Button>
+                    </Segment> 
+                </Form>
+              </GridColumn>
+          </Grid>
       )
   }
 }

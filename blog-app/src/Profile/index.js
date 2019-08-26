@@ -1,4 +1,8 @@
 import React from 'react'
+import { Grid, Image, Header} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+
+
 
 class Profile extends React.Component{
     state={
@@ -11,7 +15,11 @@ class Profile extends React.Component{
     render(){
         console.log(this.state, this.props.userInfo)
         return(
-            <h1>Welcome, {this.props.userInfo.username}</h1>
+            <div>
+                <h1>{this.props.userInfo.username}</h1>
+                <h3>{this.props.userInfo.email}</h3>
+                <Link to='/create-blog'/>
+            </div>
         )
     }
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { Button, Form, Grid, Header, Image, Message, Segment, GridColumn } from 'semantic-ui-react'
+
 
 class Login extends React.Component{
     state={
@@ -29,14 +31,26 @@ class Login extends React.Component{
 
     render(){
         return(
-            <form onSubmit={this.handleSubmit}>
-                <label>Username:</label>
-                <input type="text" name="username" onChange={this.handleChange}/>
-                <label>Password</label>
-                <input type="password" name="password" onChange={this.handleChange}/>
-                <button type="submit">Login</button>
-                <Link to="/register">Sign Up</Link>
-            </form>
+            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+                <GridColumn style={{ maxWidth: 450 }}>
+                    <Header as='h2'>
+                    <Image src='cf.png' />
+                        Lets Login In
+                    </Header>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Segment>
+                        <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' type='text' name='username' onChange={this.handleChange}/>
+                        <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password' name='password' onChange={this.handleChange}/>
+                        <Button color="vk" fluid size='large'>
+                            Login
+                        </Button>
+                        <Message>
+                            Not a member? <Link to='/register'>Register</Link>
+                        </Message>
+                        </Segment>
+                    </Form>
+                </GridColumn>
+            </Grid>
         )
     }
 }
