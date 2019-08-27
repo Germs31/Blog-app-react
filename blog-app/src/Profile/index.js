@@ -15,11 +15,29 @@ class Profile extends React.Component{
     render(){
         console.log(this.state, this.props.userInfo)
         return(
-            <div>
-                <h1>{this.props.userInfo.username}</h1>
-                <h3>{this.props.userInfo.email}</h3>
-                <Link to='/create-blog'/>
-            </div>
+            <Grid columns={2} padded style={{ height: '100vh'}}>
+                <Grid.Row>
+                <Grid.Column width={4}>
+                    {
+                    this.props.userInfo.loading ?
+                    'Loading.....' :
+
+                    <Card
+                        image={`${process.env.REACT_APP_BACKEND_URL}/profile_pics/${this.props.userInfo.image}`}
+                        header={this.props.username}
+                        meta={this.props.email}
+                        description='coding is bitter sweet'
+                        style={{'marginLeft': '8vw'}}
+                        />
+                    }
+                </Grid.Column>
+                <Grid.Column width={8}>
+                    <Header as='h2' textAlign='center'>
+                    {this.props.userInfo.username}'s Blogs
+                    </Header>
+                </Grid.Column>
+                </Grid.Row>
+            </Grid>
         )
     }
 }
