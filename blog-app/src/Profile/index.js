@@ -24,8 +24,8 @@ class Profile extends React.Component{
 
                     <Card
                         image={`${process.env.REACT_APP_BACKEND_URL}/profile_pics/${this.props.userInfo.image}`}
-                        header={this.props.username}
-                        meta={this.props.email}
+                        header={this.props.userInfo.username}
+                        meta={this.props.userInfo.email}
                         description='coding is bitter sweet'
                         style={{'marginLeft': '8vw'}}
                         />
@@ -38,6 +38,8 @@ class Profile extends React.Component{
                 </Grid.Column>
                 </Grid.Row>
             </Grid>
+
+
         )
     }
 }
