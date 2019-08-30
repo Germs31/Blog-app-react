@@ -20,7 +20,6 @@ class Register extends React.Component{
 
     handleSubmit = async (e) => {
         e.preventDefault()
-
         const data = new FormData();
         data.append('file', this.state.image)
         data.append('password', this.state.password)
@@ -47,6 +46,10 @@ class Register extends React.Component{
       return(
           <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
               <GridColumn style={{ maxWidth: 450 }}>
+                <Header as='h2'>
+                    <Image src='cf.png' />
+                        Register
+                </Header>
                 <Form onSubmit={this.handleSubmit}>
                     <Segment>
                     <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' type='text' name='username' onChange={this.handleChange}/>

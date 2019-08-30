@@ -1,6 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { Button, Form, Grid, Header, Image, Message, Segment, GridColumn } from 'semantic-ui-react'
+import { 
+    Form, 
+    Grid, 
+    Header, 
+    Image, 
+    Message, 
+    Segment, 
+    GridColumn,
+    Button 
+} from 'semantic-ui-react'
 
 
 class Login extends React.Component{
@@ -33,6 +42,7 @@ class Login extends React.Component{
         return(
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                 <GridColumn style={{ maxWidth: 450 }}>
+                    <Header as='h1'>Boiling Mountains</Header>
                     <Header as='h2'>
                     <Image src='cf.png' />
                         Lets Login In

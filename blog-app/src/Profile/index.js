@@ -1,6 +1,10 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Card, Icon} from 'semantic-ui-react';
-import {Link} from 'react-router-dom'
+import Blog from '../Blog/index'
+import { Button,Container} from 'semantic-ui-react';
+import { Link,Redirect } from 'react-router-dom'
+import { Div, Img } from './style'
+
+
 
 
 
@@ -12,34 +16,39 @@ class Profile extends React.Component{
         username: ''
     }
 
+    logOut = () =>{
+        localStorage.clear();
+        window.location.href = '/';
+        
+    }
+    
+
+
     render(){
-        console.log(this.state, this.props.userInfo)
         return(
-            <Grid columns={2} padded style={{ height: '100vh'}}>
-                <Grid.Row>
-                <Grid.Column width={4}>
+            <Container fluid>
+                <Div>
+                <h1>Blogs</h1>
+                    
+                {!this.props.userInfo.username && <Redirect to="/"/>}
+                
                     {
                     this.props.userInfo.loading ?
                     'Loading.....' :
-
-                    <Card
-                        image={`${process.env.REACT_APP_BACKEND_URL}/profile_pics/${this.props.userInfo.image}`}
-                        header={this.props.userInfo.username}
-                        meta={this.props.userInfo.email}
-                        description='coding is bitter sweet'
-                        style={{'marginLeft': '8vw'}}
-                        />
+                    <div>
+                        <Img src={`${process.env.REACT_APP_BACKEND_URL}/profile_pics/${this.props.userInfo.image}`} />
+                        <h3>Welcome, {this.props.userInfo.username}</h3>
+                        <Link to={`/user/${this.props.userInfo.id}/edit`}>
+                            <Button>Edit</Button>
+                        </Link>
+                        <Button onClick={()=>this.logOut()} type="button">Log Out</Button>
+                    </div>
                     }
-                </Grid.Column>
-                <Grid.Column width={8}>
-                    <Header as='h2' textAlign='center'>
-                    {this.props.userInfo.username}'s Blogs
-                    </Header>
-                </Grid.Column>
-                </Grid.Row>
-            </Grid>
 
+                </Div>
+                <Blog />
 
+            </Container>
         )
     }
 }

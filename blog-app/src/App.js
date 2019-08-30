@@ -1,18 +1,30 @@
 import React from 'react'
 import Login from './Login'
-import Register from './Register';
+import Register from './Register'
 import Profile from './Profile'
 import Edit from './Edit'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import './App.css';
-console.log(process.env)
+import EditBlog from './EditBlog';
 
 class App extends React.Component{
   state={
     username: null,
     email: '',
     image: '',
-    loading: true
+    loading: true,
+    userId: 0
+  }
+
+  componentDidMount(){
+    const user = JSON.parse(localStorage.getItem("user"))
+    console.log(user)
+    if(user){
+      this.setState({
+        ...user,
+        loading:false
+      })
+    }
   }
 
   logIn = async (loginInfo) => {
@@ -25,9 +37,8 @@ class App extends React.Component{
           'Content-Type': 'application/json'
         }
       })
-
       const parsedResponse = await loginResponse.json();
-
+      localStorage.setItem("user", JSON.stringify(parsedResponse.data))
       this.setState(() => {
         return {
           ...parsedResponse.data,
@@ -38,6 +49,7 @@ class App extends React.Component{
       return parsedResponse
 
     } catch (err){
+      alert('wronggg')
       console.log(err)
     }
   }
@@ -54,6 +66,7 @@ class App extends React.Component{
       })
 
       const parsedResponse = await registerResponse.json()
+      localStorage.setItem("user", JSON.stringify(parsedResponse.data))
 
       console.log(parsedResponse)
 
@@ -69,7 +82,29 @@ class App extends React.Component{
     }
   }
 
+  updateUser = (user) => {
+    localStorage.setItem("user", JSON.stringify(user))
+    this.setState({
+      ...user,
+      loading: true,
+    })
+  }
+
+  deleteUser = (user) =>{
+    localStorage.clear()
+    this.setState({
+      username: null,
+      email: '',
+      image: '',
+      loading: true,
+      userId: 0
+    })
+    this.props.history.push('/')
+  }
+  
+  
   render(){
+    const user = JSON.parse(localStorage.getItem("user"))
     return (
       <div className="App">
         <Switch>
@@ -77,9 +112,11 @@ class App extends React.Component{
 
           <Route exact path="/register" render={(props) => <Register {...props} register={this.register}/>}/>
 
-          <Route exact path="/profile" render={(props) => this.state.username ? <Profile {...props} userInfo={this.state}/> : <Redirect to='/' />}/>
+          <Route exact path="/profile" render={(props) => <Profile {...props} userInfo={user}/>}/>
 
-          <Route exact path='/user/:id/edit' render={(props) => <Edit edit={this.edit} {...props} />} />
+          <Route exact path='/user/:id/edit' render={(props) => <Edit edit={this.edit} {...props} user={this.state} update={this.updateUser} delete={this.deleteUser}/>} />
+
+          <Route exact path='/blog/edit/:id' render={(props) => <EditBlog {...props}/>}/>
 
         </Switch>
       </div>
@@ -90,4 +127,4 @@ class App extends React.Component{
 
 
 
-export default App;
+export default withRouter(App);
