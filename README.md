@@ -6,7 +6,7 @@ A little place to vent your fustration or just write anything you feel like.
 # Technologies used:
 React, Python, Flask, Sqlite 
 
-![wireframe](https://imgur.com/PwhS28u)
+![wireframe](https://i.imgur.com/PwhS28u.png)
 
 
 
